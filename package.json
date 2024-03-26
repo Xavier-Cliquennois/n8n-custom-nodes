@@ -1,9 +1,12 @@
 {
   "name": "n8n-custom-nodes",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.2.0",
+  "description": "n8n community node to work with the Digital Ocean API",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "digital ocean",
+    "droplet",
+    "vps"
   ],
   "license": "MIT",
   "homepage": "",
@@ -13,16 +16,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Xavier-Cliquennois/n8n-custom-nodes.git"
+    "url": "git+https://github.com/Xavier-Cliquennois/n8n-custom-nodes.git"
   },
   "main": "index.js",
   "scripts": {
     "build": "tsc && gulp build:icons",
     "dev": "tsc --watch",
-    "format": "prettier nodes credentials --write",
-    "lint": "eslint nodes credentials package.json",
-    "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+    "format": "prettier nodes --write",
+    "lint": "eslint nodes package.json",
+    "lintfix": "eslint nodes package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes package.json"
   },
   "files": [
     "dist"
@@ -30,12 +33,13 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/DigitalOceanApi.credentials.js",
+      "dist/credentials/DigitalOceanOAuth2Api.credentials.js",
+      "dist/credentials/NasaPicsApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/DigitalOcean/DigitalOcean.node.js",
+      "dist/nodes/NasaPics/NasaPics.node.js"
     ]
   },
   "devDependencies": {
