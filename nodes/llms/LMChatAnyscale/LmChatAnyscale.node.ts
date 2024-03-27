@@ -11,11 +11,11 @@ import { ChatOpenAI, type ClientOptions } from '@langchain/openai';
 import { logWrapper } from '@n8n/n8n-nodes-langchain/dist/utils/logWrapper';
 import { getConnectionHintNoticeField, } from '@n8n/n8n-nodes-langchain/dist/utils/sharedFields';
 
-export class LmChatOpenAi implements INodeType {
+export class LmAnyscale implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Anyscale Chat Model',
 		// eslint-disable-next-line n8n-nodes-base/node-class-description-name-miscased
-		name: 'lmChatOpenAi',
+		name: 'lmAnyscale',
 		icon: 'file:anyscale.svg',
 		group: ['transform'],
 		version: 1,
@@ -43,7 +43,7 @@ export class LmChatOpenAi implements INodeType {
 		outputNames: ['Model'],
 		credentials: [
 			{
-				name: 'openAiApi',
+				name: 'anyscale',
 				required: true,
 			},
 		],
@@ -71,7 +71,7 @@ export class LmChatOpenAi implements INodeType {
 				name: 'model',
 				type: 'options',
 				description:
-					'The model which will generate the completion. <a href="https://beta.openai.com/docs/models/overview">Learn more</a>.',
+					'The model which will generate the completion. <a href="https://docs.endpoints.anyscale.com/">Learn more</a>.',
 				typeOptions: {
 					loadOptions: {
 						routing: {
@@ -220,7 +220,7 @@ export class LmChatOpenAi implements INodeType {
 	};
 
 	async supplyData(this: IExecuteFunctions, itemIndex: number): Promise<SupplyData> {
-		const credentials = await this.getCredentials('openAiApi');
+		const credentials = await this.getCredentials('anyscale');
 
 		const modelName = this.getNodeParameter('model', itemIndex) as string;
 		const options = this.getNodeParameter('options', itemIndex, {}) as {
